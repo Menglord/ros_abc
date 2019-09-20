@@ -1,0 +1,10 @@
+[core]
+ edit=vim
+.autotools
+.cproject
+.metadata
+.project
+.settings
+build
+devel
+core
