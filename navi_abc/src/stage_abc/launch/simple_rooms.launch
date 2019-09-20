@@ -1,0 +1,20 @@
+<launch>
+	<master auto="start"/>
+	<param name="/use_sim_time" value="true"/>
+	
+	<node name="map_server" pkg="map_server" type="map_server"
+		args="$(find stage_abc)/map/simple_rooms.yaml" respawn="false">
+	</node>
+	
+	<include file="$(find stage_abc)/launch/amcl.launch"/>
+	<include file="$(find stage_abc)/launch/move_base.launch"/>
+	
+	<node pkg="stage_ros" type="stageros" name="stageros"
+		args="$(find stage_abc)/world/simple_rooms.world">
+		<param name="base_watchdog_timeout" value="0.2"/>
+	</node>
+	
+	<node name="rviz" pkg="rviz" type="rviz"
+		args="-d $(find stage_abc)/rviz/simple_rooms.rviz">
+	</node>
+</launch>
